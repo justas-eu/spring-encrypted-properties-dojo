@@ -26,3 +26,38 @@ Check
 <pre>
 curl http://localhost:8080/test
 </pre>
+ 
+ 
+# Integration with jib
+ https://github.com/GoogleContainerTools/jib/blob/master/README.md
+ 
+ Make sure you have docker install and configured
+ 
+ <pre>
+  mvn compile jib:dockerBuild
+ </pre> 
+ 
+ List images
+ 
+ <pre>
+ docker images
+ </pre>  
+ 
+ Run it
+ 
+ <pre>
+  docker run -it --rm -e ENCRYPT_KEY='dojo-passwd' -p 8080:8080 encrypted-properties
+ </pre>
+ 
+ Check again
+ 
+ <pre>
+ curl http://localhost:8080/test
+ </pre>
+  
+Clean up
+<pre>
+mvn clean
+docker rmi encrypted-properties
+</pre> 
+  
