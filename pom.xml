@@ -65,6 +65,12 @@
 				<artifactId>jib-maven-plugin</artifactId>
 				<version>0.9.6</version>
 				<configuration>
+					<!-- uncomment this if you will be running docker image on raspberry pi (arm architecture) -->
+					<!--<from>-->
+						<!--<image>-->
+							<!--resin/raspberry-pi-openjdk-->
+						<!--</image>-->
+					<!--</from>-->
 					<to>
 						<image>encrypted-properties</image>
 					</to>
