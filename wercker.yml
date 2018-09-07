@@ -21,6 +21,13 @@ build:
       dockerfile: Dockerfile
       image-name: spring-encrypted-properties-dojo
       build-args: "JAR_FILE=target/encrypted-properties-0.0.1-SNAPSHOT.jar"
+    - internal/docker-push:
+      tag: latest, $WERCKER_GIT_BRANCH
+      image-name: spring-encrypted-properties-dojo
+      username: justaseu # Registry username
+      password: $OCIR_PASSWORD # Registry password
+      registry: hub.docker.com
+      repository: justaseu/spring-encrypted-properties-dojo
       
 code-analysis:
   # report static code analysis to sonarqube
