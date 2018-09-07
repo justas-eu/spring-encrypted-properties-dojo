@@ -22,3 +22,10 @@ build:
       image-name: spring-encrypted-properties-dojo
       build-args: "JAR_FILE=target/encrypted-properties-0.0.1-SNAPSHOT.jar"
       
+code-analysis:
+  # report static code analysis to sonarqube
+  steps:
+  - wercker/maven:
+      goals: clean install sonar:sonar -Dsonar.login=admin -Dsonar.password=$SONAR_PASSWORD
+      cache_repo: true
+      version: 3.5.2
