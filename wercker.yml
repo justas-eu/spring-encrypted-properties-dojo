@@ -17,3 +17,8 @@ build:
       goals: install
       cache_repo: true
       version: 3.5.2
+    - internal/docker-build:
+      dockerfile: Dockerfile
+      image-name: spring-encrypted-properties-dojo
+      build-args: "JAR_FILE=target/encrypted-properties-0.0.1-SNAPSHOT.jar"
+      
