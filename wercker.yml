@@ -27,7 +27,29 @@ build:
       username: justaseu # Registry username
       password: $OCIR_PASSWORD # Registry password
       repository: justaseu/spring-encrypted-properties-dojo
-      
+
+deploy-to-development:
+  steps:
+  - add-to-known_hosts:
+      hostname: $WERCKER_GIT_BRANCH-platform.justas.eu
+  - mktemp:
+      envvar: PRIVATEKEY_PATH
+  - create-file:
+      name: write key
+      filename: $PRIVATEKEY_PATH
+      content: $DOJO_PRIVATE
+      overwrite: true
+      hide-from-log: true
+  - script:
+      name: upgrade-spring-encrypted-properties-dojo
+      code: ssh -i $PRIVATEKEY_PATH -l justas -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $WERCKER_GIT_BRANCH-platform.justas.tech './docker/upgrade-spring-encrypted-properties-dojo.sh >> docker/logs.txt'
+
+test:
+  - script:
+      name: test spring-encrypted-properties-dojo
+      code: curl $WERCKER_GIT_BRANCH-platform.justas.eu/test
+
+
 code-analysis:
   # report static code analysis to sonarqube
   steps:
