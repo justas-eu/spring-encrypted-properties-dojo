@@ -26,7 +26,6 @@ build:
       image-name: spring-encrypted-properties-dojo
       username: justaseu # Registry username
       password: $OCIR_PASSWORD # Registry password
-      registry: hub.docker.com
       repository: justaseu/spring-encrypted-properties-dojo
       
 code-analysis:
